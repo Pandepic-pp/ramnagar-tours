@@ -25,6 +25,10 @@ src/
   lib/        format.ts (money, India-time helpers, time slots)
 ```
 
+## Deploy (Vercel + Render)
+Client on Vercel (root directory `client`), API on Render. `vercel.json` proxies `/api/*` to the Render URL (replace the placeholder) and falls back to `index.html`,
+so the browser only ever talks to the Vercel domain and the SameSite=Lax session cookie stays first-party. Set `TRUST_PROXY_HOPS=2` on Render. Do not set `VITE_API_URL`.
+
 ## Rules to keep
 - **Never calculate prices here.** Fares come from `POST /api/quotes`; booking sends `quotedTotal` as a price lock and the server
   re-prices and answers 409 if the rate card moved. Places, vehicles and rules come from `GET /api/catalog`.
