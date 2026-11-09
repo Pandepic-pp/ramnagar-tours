@@ -1,0 +1,104 @@
+/*
+  Design tokens.
+
+  THE PALETTE (given):   peach #F4BAA3   cream #F4F0E2   sky #A6C8E2   blue #619DC6
+
+  HOW IT IS USED (60 / 30 / 10, and a warm accent against a cool field):
+    60%  cream   Page background. Calm, paper-like, makes every other colour read as more saturated.
+    30%  sky and blue   Structure: tinted bands and cards (sky), brand fills, route lines, icons (blue).
+    10%  peach   The one warm accent. Peach is nearly opposite blue on the wheel, so it pulls the eye.
+                 It is reserved for THE primary action on a screen, and for small highlights. Never for body text.
+
+  COLOUR HIERARCHY (what the eye should land on, in order):
+    1. Peach fill + ink text      the single primary action (Book, Confirm, Send code)
+    2. Deep blue / ink            headings and key numbers (price)
+    3. Blue 619DC6                brand marks, active states, routes, selected borders
+    4. Sky tints                  supporting surfaces and grouping
+    5. Cream                      everything else
+
+  ACCESSIBILITY, measured (WCAG contrast):
+    #619DC6 on cream is only 2.6:1, so blue is a FILL and GRAPHIC colour, never small text.
+    Text on blue and peach fills is ink (#112636): 5.3:1 and 9.2:1.
+    Blue-toned text on light surfaces uses the deeper shade --blue-700 (5.1:1).
+*/
+
+:root {
+  /* ---- the four given colours ---- */
+  --peach: #F4BAA3;
+  --cream: #F4F0E2;
+  --sky: #A6C8E2;
+  --blue: #619DC6;
+
+  /* ---- shades derived from them (same hues, different lightness) ---- */
+  --cream-50: #FBF9F3;    /* raised surfaces: cards, inputs */
+  --cream-200: #E9E3CF;   /* hairlines and borders on cream */
+  --cream-300: #DAD2B9;   /* stronger borders, disabled */
+
+  --sky-50: #EEF5FA;
+  --sky-100: #DCE9F3;     /* tinted bands and chips */
+  --sky-200: #C9DDEC;
+
+  --blue-600: #4F8AB3;    /* hover on blue fills */
+  --blue-700: #2F6A93;    /* links, icons and text on light surfaces (5.1:1 on cream) */
+  --blue-900: #1F4560;    /* dark bands, with cream text (8.9:1) */
+
+  --peach-200: #F8D3C3;
+  --peach-500: #EFA487;   /* hover and pressed on the primary button */
+  --peach-700: #9C4A2E;   /* the only peach that may be text: small labels on light (5.4:1) */
+
+  --ink: #112636;         /* headings and body text (13.6:1 on cream) */
+  --ink-soft: #3D5A70;    /* secondary text (6.4:1) */
+  --ink-mute: #4F6A80;    /* captions and meta (4.6:1 minimum on every surface here) */
+
+  --danger: #B4432B;      /* errors: a deeper shade of peach's own hue, so it stays in family */
+  --danger-bg: #FBE6DE;
+
+  /* ---- semantic roles: components use these, never the raw palette ---- */
+  --bg: var(--cream);
+  --surface: var(--cream-50);
+  --surface-tint: var(--sky-100);
+  --border: var(--cream-200);
+  --border-strong: var(--cream-300);
+  --text: var(--ink);
+  --text-2: var(--ink-soft);
+  --text-3: var(--ink-mute);
+  --action: var(--peach);
+  --action-hover: var(--peach-500);
+  --brand: var(--blue);
+  --link: var(--blue-700);
+  --focus: var(--blue-700);
+
+  /* ---- type ---- */
+  --font-display: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
+  --fs-2xl: clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem);
+  --fs-3xl: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --fs-hero: clamp(2.1rem, 1.3rem + 3vw, 3.7rem);
+
+  /* ---- space (4px base) ---- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px;
+  --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px;
+
+  /* ---- shape and depth (shadows are tinted with the ink hue, never pure black) ---- */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgb(17 38 54 / 0.06), 0 1px 1px rgb(17 38 54 / 0.04);
+  --shadow-2: 0 2px 4px rgb(17 38 54 / 0.05), 0 12px 28px -10px rgb(17 38 54 / 0.16);
+  --shadow-3: 0 4px 8px rgb(17 38 54 / 0.06), 0 28px 56px -16px rgb(17 38 54 / 0.28);
+
+  --container: 1180px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --header-h: 72px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
